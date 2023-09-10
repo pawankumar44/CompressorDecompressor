@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import comp_decomp.compressor;
+import comp_decomp.decompressor;
+
 
 //for basic ui for our project
 //JFrame as our main window. From JFrame we put our components
@@ -15,12 +19,14 @@ public class AppFrame extends JFrame implements ActionListener {
 
     AppFrame(){
         //exit on clicking the close button
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         compressButton = new JButton("Select file to compress");
-        compressButton.setBounds(20,100,200,30);
+        compressButton.setBounds(100,100,200,30);
+        compressButton.addActionListener(this);
 
         decompressButton = new JButton("Select file to decompress");
         decompressButton.setBounds(250,100,200,30);
+        decompressButton.addActionListener(this);
 
         this.add(compressButton);
         this.add(decompressButton);
@@ -31,7 +37,41 @@ public class AppFrame extends JFrame implements ActionListener {
 
     @Override
     public void  actionPerformed(ActionEvent e){
+        if(e.getSource() == compressButton){
+            JFileChooser fileChooser = new JFileChooser();
+            int response = fileChooser.showSaveDialog(null);
+            if(response == JFileChooser.APPROVE_OPTION){
+                //prefer text editor comments for understanding
+                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                System.out.println(file);
+                try{
+                    //after importing the packge
+                    compressor.method(file);
+                }
+                //general error catch
+                catch (Exception ee){
+                    JOptionPane.showMessageDialog(null,ee.toString());
+                }
+            }
+        }
 
+        if(e.getSource() == decompressButton){
+            JFileChooser fileChooser = new JFileChooser();
+            int response = fileChooser.showSaveDialog(null);
+            if(response == JFileChooser.APPROVE_OPTION){
+                //prefer text editor comments for understanding
+                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                System.out.println(file);
+                try{
+                    //after importing the packge
+                    decompressor.method(file);
+                }
+                //general error catch
+                catch (Exception ee){
+                    JOptionPane.showMessageDialog(null,ee.toString());
+                }
+            }
+        }
     }
 
 }
