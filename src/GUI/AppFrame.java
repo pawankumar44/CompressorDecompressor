@@ -19,13 +19,16 @@ public class AppFrame extends JFrame implements ActionListener {
 
     AppFrame(){
         //exit on clicking the close button
-//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this line is imp, without that my 1st button was not appearing
+        //TODO: Doubt to ask
+        this.getContentPane().setLayout(null);
         compressButton = new JButton("Select file to compress");
         compressButton.setBounds(100,100,200,30);
         compressButton.addActionListener(this);
 
         decompressButton = new JButton("Select file to decompress");
-        decompressButton.setBounds(250,100,200,30);
+        decompressButton.setBounds(400,100,200,30);
         decompressButton.addActionListener(this);
 
         this.add(compressButton);

@@ -16,7 +16,7 @@ public class compressor {
         FileOutputStream fileOutputStream = new FileOutputStream(fileDirectory+"/CompressedFile.gz");
         //we want output file to be compressed
         //what ever sending output file those need to be compressed, fileOutStream to be passed
-        GZIPOutputStream gzip = new  GZIPOutputStream(fileOutputStream);
+        GZIPOutputStream gzip = new GZIPOutputStream(fileOutputStream);
 
         //read bytes
         //with the help of this buffer array, we read the data then write it to output file
@@ -33,7 +33,7 @@ public class compressor {
     }
 
     public  static  void main(String[] args) throws  IOException{
-        File path = new File("C:");
+        File path = new File("");
         //passing the path of the file
         method(path);
     }
